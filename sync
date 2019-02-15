@@ -1,0 +1,19 @@
+#!/usr/bin/expect
+set username  "marc_trebot"
+set passwd    "cd3322e27c61aa02adb440e3e7b39d50b120f6ef"
+set msglogin  "Username for 'https://github.com':"
+set msgpasswd "Password for 'https://marc_trebot@github.com':"
+set prompt "~/eclipse-workspace/"
+
+set timeout -1
+
+spawn git status
+
+spawn git commit -m "first commit"
+
+spawn git push -u origin master --verbose 
+expect "$msglogin"
+send "$username\n"
+expect "$msgpasswd"
+send "$passwd\n"
+expect "$prompt"
